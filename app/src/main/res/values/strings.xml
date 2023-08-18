@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PruebaTecnica</string>
+    <string name="error_showing_movie_not_found">Movie not found\n</string>
+
+    <string name="movie_title_format">Titulo %s</string>
+    <string name="movie_resumen_format">Resumen: %s</string>
+    <string name="movie_rating_format">Calificación %.2f</string>
+
+</resources>
