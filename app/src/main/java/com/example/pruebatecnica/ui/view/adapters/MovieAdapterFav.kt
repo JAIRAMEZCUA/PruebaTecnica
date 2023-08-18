@@ -11,7 +11,7 @@ import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.databinding.MovieListItemBinding
 
 
-class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(DiffCallback) {
+class MovieAdapterFav : ListAdapter<Movie, MovieAdapterFav.MovieViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
@@ -42,11 +42,13 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(DiffCallba
         position: Int
     ) {
         val movie = getItem(position)
-        dogViewHolder.bind(movie)
+        if (movie.favorite)
+            dogViewHolder.bind(movie)
     }
 
     inner class MovieViewHolder(private val binding: MovieListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(movie: Movie) {
             binding.movieListItemLayout.setOnClickListener {
                 onItemClickListener?.invoke(movie)

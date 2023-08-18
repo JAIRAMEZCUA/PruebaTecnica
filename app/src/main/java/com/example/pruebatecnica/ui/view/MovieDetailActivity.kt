@@ -1,5 +1,6 @@
 package com.example.pruebatecnica.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -78,5 +79,10 @@ class MovieDetailActivity : AppCompatActivity() {
         // Crear y mostrar el AlertDialog
         val alertDialog: AlertDialog = alertDialogBuilder.create()
         alertDialog.show()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MoviesMenuActivity::class.java)
+        startActivity(intent)
     }
 }

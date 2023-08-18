@@ -7,8 +7,7 @@ class GetFavMovieUseCase() {
 
     private val repository = MovieRepository()
     suspend operator fun invoke(): List<Movie> {
-        val movies = repository.getAllMoviesFromDatabase()
-        return movies
+        return repository.getAllMoviesFromDatabase()
     }
 
     suspend fun invokeInsertFav(movie: Movie, like: Boolean) {

@@ -21,7 +21,8 @@ fun MovieEntity.toDomain() = Movie(
     posterPath = posterPath,
     title = title,
     overview = overview,
-    voteAverage = voteAverage
+    voteAverage = voteAverage,
+    favorite = favorite
 )
 
 fun Movie.toDatabase() = {
