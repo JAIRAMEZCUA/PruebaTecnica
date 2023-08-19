@@ -2,6 +2,7 @@ package com.example.pruebatecnica.data.database
 
 import android.app.Application
 import androidx.room.Room
+import com.google.firebase.FirebaseApp
 
 /****
  * Project: List
@@ -24,6 +25,7 @@ class MovieApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
         database = Room.databaseBuilder(
             this,
             MovieDatabase::class.java,
