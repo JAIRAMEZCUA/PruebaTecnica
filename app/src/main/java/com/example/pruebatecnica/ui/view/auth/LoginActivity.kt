@@ -1,15 +1,18 @@
 package com.example.pruebatecnica.ui.view.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.ActivityLoginBinding
-import com.google.firebase.analytics.FirebaseAnalytics
+import com.example.pruebatecnica.ui.view.MoviesMenuActivity
 
 class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
-    SignUpFragment.onSignUpFragmentActions {
+    SignUpFragment.SignUpFragmentActions {
 
 
     private val viewModel: AuthViewModel by viewModels()
@@ -18,6 +21,7 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
         super.onCreate(savedInstanceState)
         val binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         viewModel.status.observe(this) {
             when (it) {
                 is LoginStatus.Error -> {
@@ -29,7 +33,8 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
 
                 is LoginStatus.Success -> {
                     binding.loadingWheel.visibility = View.GONE
-
+                    val intent = Intent(this, MoviesMenuActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
@@ -44,9 +49,17 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
             .show()
     }
 
-
-    override fun onFieldValidated(email: String, password: String, passwordConfirmation: String) {
+    override fun onSignUpFieldsValidated(
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ) {
         viewModel.signUp(email, password)
+    }
+
+    override fun onRegisterButtonClick() {
+        findNavController(R.id.nav_host_fragment)
+            .navigate(R.id.action_loginFragment_to_signUpFragment)
     }
 
     override fun onLoginFieldsValidated(email: String, password: String) {

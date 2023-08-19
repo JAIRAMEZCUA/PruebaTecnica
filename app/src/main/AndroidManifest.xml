@@ -22,7 +22,7 @@
 
         <activity
             android:name=".ui.view.MoviesMenuActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.view.auth.LoginActivity"
             android:exported="true"

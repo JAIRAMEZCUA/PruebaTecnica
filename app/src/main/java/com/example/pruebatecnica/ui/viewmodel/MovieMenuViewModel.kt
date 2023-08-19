@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class MovieMenuViewModel : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
-    var getMoviesUseCase = GetMoviesUseCase()
+    private var getMoviesUseCase = GetMoviesUseCase()
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
         get() = _movieList

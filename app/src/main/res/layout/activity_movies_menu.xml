@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|enterAlways"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="Ingresa a tus peliculas favoritas"
+            app:title="Da click para checar tus peliculas favoritas!!"
             app:titleTextColor="@android:color/darker_gray">
 
             <ImageView
