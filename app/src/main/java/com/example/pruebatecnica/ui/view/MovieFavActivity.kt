@@ -15,8 +15,10 @@ import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.databinding.ActivityMovieFavBinding
 import com.example.pruebatecnica.ui.view.adapters.MovieAdapterFav
 import com.example.pruebatecnica.ui.viewmodel.MovieFavViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class MovieFavActivity : AppCompatActivity() {
     private val movieViewModel: MovieFavViewModel by viewModels()
     private val movies: ArrayList<Movie> = arrayListOf()

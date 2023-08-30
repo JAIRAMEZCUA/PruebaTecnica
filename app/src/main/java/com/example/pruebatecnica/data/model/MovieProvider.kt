@@ -1,9 +1,9 @@
 package com.example.pruebatecnica.data.model
 
-class MovieProvider {
-    companion object {
+import javax.inject.Inject
+import javax.inject.Singleton
 
-        var movies:List<Movie> = emptyList()
-
-    }
+@Singleton
+class MovieProvider @Inject constructor() {
+    var movies: List<Movie> = emptyList()
 }

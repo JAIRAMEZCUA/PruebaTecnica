@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.domain.GetMoviesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieMenuViewModel : ViewModel() {
+@HiltViewModel
+class MovieMenuViewModel @Inject constructor(
+    private val getMoviesUseCase: GetMoviesUseCase
+) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
-    private var getMoviesUseCase = GetMoviesUseCase()
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
         get() = _movieList

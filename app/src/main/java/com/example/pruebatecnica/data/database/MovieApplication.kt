@@ -1,8 +1,8 @@
 package com.example.pruebatecnica.data.database
 
 import android.app.Application
-import androidx.room.Room
 import com.google.firebase.FirebaseApp
+import dagger.hilt.android.HiltAndroidApp
 
 /****
  * Project: List
@@ -18,18 +18,11 @@ import com.google.firebase.FirebaseApp
  * Coupons on my Website:
  * www.alainnicolastello.com
  ***/
+@HiltAndroidApp
 class MovieApplication : Application() {
-    companion object {
-        lateinit var database: MovieDatabase
-    }
 
     override fun onCreate() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
-        database = Room.databaseBuilder(
-            this,
-            MovieDatabase::class.java,
-            "ListDatabase"
-        ).build()
     }
 }

@@ -12,7 +12,9 @@ import com.example.pruebatecnica.MOVIE_KEY
 import com.example.pruebatecnica.databinding.ActivityMoviesMenuBinding
 import com.example.pruebatecnica.ui.view.adapters.MovieAdapter
 import com.example.pruebatecnica.ui.viewmodel.MovieMenuViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesMenuActivity : AppCompatActivity() {
 
     private val movieViewModel: MovieMenuViewModel by viewModels()

@@ -1,28 +1,32 @@
 package com.example.pruebatecnica.data
 
-import com.example.pruebatecnica.data.database.MovieApplication
+import com.example.pruebatecnica.data.database.dao.MovieDao
 import com.example.pruebatecnica.data.database.entities.MovieEntity
 import com.example.pruebatecnica.data.database.entities.toDomain
 import com.example.pruebatecnica.data.dto.MovieDTOMapper
 import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.data.model.MovieProvider
 import com.example.pruebatecnica.data.network.MovieService
+import javax.inject.Inject
 
-class MovieRepository {
+class MovieRepository @Inject constructor(
+    private val api: MovieService,
+    private val movieProvider: MovieProvider,
+    private val movieDao: MovieDao
 
-    private val api = MovieService()
+) {
     suspend fun getAllMovies(): List<Movie> {
         val response = api.getMovies()
         val movieDTOMapper = MovieDTOMapper()
         val responseMapper = movieDTOMapper.fromMovieDTOListToMovieDomainList(response)
-        MovieProvider.movies = responseMapper
+        movieProvider.movies = responseMapper
         return responseMapper;
     }
 
     suspend fun getAllMoviesFromDatabase(): List<Movie> {
         try {
             val response: List<MovieEntity> =
-                MovieApplication.database.getMovieDao().getAllMoviesFav()
+                movieDao.getAllMoviesFav()
             return response.map { it.toDomain() }
         } catch (e: Exception) {
             throw Exception("Error al descargar.")
@@ -35,7 +39,7 @@ class MovieRepository {
                 movie.id, movie.posterPath!!, movie.title!!, movie.overview!!,
                 movie.voteAverage!!, like
             )
-            MovieApplication.database.getMovieDao().insertMovie(entity)
+            movieDao.insertMovie(entity)
         } catch (e: Exception) {
             throw Exception("Marcar como favorito")
         }
@@ -46,6 +50,6 @@ class MovieRepository {
             movie.id, movie.posterPath!!, movie.title!!, movie.overview!!,
             movie.voteAverage!!, false
         )
-        return MovieApplication.database.getMovieDao().updateMovie(entity)
+        return movieDao.updateMovie(entity)
     }
 }

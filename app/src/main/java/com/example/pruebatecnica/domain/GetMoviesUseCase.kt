@@ -1,10 +1,8 @@
 package com.example.pruebatecnica.domain
 
 import com.example.pruebatecnica.data.MovieRepository
-import com.example.pruebatecnica.data.model.Movie
+import javax.inject.Inject
 
-class GetMoviesUseCase {
-    private val repository = MovieRepository()
+class GetMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
     suspend operator fun invoke() = repository.getAllMovies()
-
 }

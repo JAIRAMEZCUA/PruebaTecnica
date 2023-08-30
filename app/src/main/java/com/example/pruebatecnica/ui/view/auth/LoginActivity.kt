@@ -10,7 +10,10 @@ import androidx.navigation.findNavController
 import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.ActivityLoginBinding
 import com.example.pruebatecnica.ui.view.MoviesMenuActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
     SignUpFragment.SignUpFragmentActions {
 

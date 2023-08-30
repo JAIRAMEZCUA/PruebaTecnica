@@ -13,11 +13,13 @@ import com.example.pruebatecnica.R
 import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.databinding.ActivityMovieDetailBinding
 import com.example.pruebatecnica.domain.GetFavMovieUseCase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieDetailActivity : AppCompatActivity() {
-
-    var getMoviesUseCaseFav = GetFavMovieUseCase()
+@AndroidEntryPoint
+class MovieDetailActivity @Inject constructor(private val getMoviesUseCaseFav: GetFavMovieUseCase) :
+    AppCompatActivity() {
 
     lateinit var binding: ActivityMovieDetailBinding;
     override fun onCreate(savedInstanceState: Bundle?) {

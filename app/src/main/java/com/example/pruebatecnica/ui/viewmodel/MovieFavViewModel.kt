@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.domain.GetFavMovieUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieFavViewModel : ViewModel() {
+@HiltViewModel
+class MovieFavViewModel @Inject constructor(
+    private val getMoviesUseCaseFav: GetFavMovieUseCase
+) : ViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
-    var getMoviesUseCaseFav = GetFavMovieUseCase()
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
         get() = _movieList

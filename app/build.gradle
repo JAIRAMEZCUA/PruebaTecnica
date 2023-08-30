@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -37,6 +38,11 @@ android {
 
     buildFeatures {
         dataBinding true
+    }
+
+// Allow references to generated code
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -85,6 +91,10 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
+
+    //dagger hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
 }
 
