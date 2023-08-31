@@ -20,7 +20,7 @@ class MovieRepository @Inject constructor(
         val movieDTOMapper = MovieDTOMapper()
         val responseMapper = movieDTOMapper.fromMovieDTOListToMovieDomainList(response)
         movieProvider.movies = responseMapper
-        return responseMapper;
+        return responseMapper
     }
 
     suspend fun getAllMoviesFromDatabase(): List<Movie> {
