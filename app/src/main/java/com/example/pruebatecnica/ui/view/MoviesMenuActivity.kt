@@ -2,7 +2,6 @@ package com.example.pruebatecnica.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -12,10 +11,11 @@ import com.example.pruebatecnica.MOVIE_KEY
 import com.example.pruebatecnica.databinding.ActivityMoviesMenuBinding
 import com.example.pruebatecnica.ui.view.adapters.MovieAdapter
 import com.example.pruebatecnica.ui.viewmodel.MovieMenuViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesMenuActivity : AppCompatActivity() {
 
-    private val movieViewModel: MovieMenuViewModel by viewModels()
+    private val movieViewModel: MovieMenuViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

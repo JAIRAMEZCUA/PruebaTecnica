@@ -7,7 +7,7 @@ import com.example.pruebatecnica.data.model.Movie
 
 @Entity(tableName = "movie_table")
 data class MovieEntity(
-    @PrimaryKey(autoGenerate = true) var id: Int? = null,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "posterPath") val posterPath: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "overview") val overview: String,
@@ -27,7 +27,7 @@ fun MovieEntity.toDomain() = Movie(
 
 fun Movie.toDatabase() = {
     MovieEntity(
-        id = id,
+        id = id!!,
         posterPath = posterPath!!,
         title = title!!,
         overview = overview!!,

@@ -1,8 +1,11 @@
 package com.example.pruebatecnica.data.database
 
 import android.app.Application
-import androidx.room.Room
+import com.example.pruebatecnica.di.viewModelModule
 import com.google.firebase.FirebaseApp
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 /****
  * Project: List
@@ -19,17 +22,14 @@ import com.google.firebase.FirebaseApp
  * www.alainnicolastello.com
  ***/
 class MovieApplication : Application() {
-    companion object {
-        lateinit var database: MovieDatabase
-    }
-
     override fun onCreate() {
         super.onCreate()
+        startKoin {
+            androidLogger()
+            androidContext(this@MovieApplication)
+            modules(viewModelModule)
+        }
+
         FirebaseApp.initializeApp(this)
-        database = Room.databaseBuilder(
-            this,
-            MovieDatabase::class.java,
-            "ListDatabase"
-        ).build()
     }
 }

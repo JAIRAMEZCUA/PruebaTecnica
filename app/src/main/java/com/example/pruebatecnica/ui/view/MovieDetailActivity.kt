@@ -14,11 +14,10 @@ import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.databinding.ActivityMovieDetailBinding
 import com.example.pruebatecnica.domain.GetFavMovieUseCase
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
-class MovieDetailActivity : AppCompatActivity() {
-
-    var getMoviesUseCaseFav = GetFavMovieUseCase()
-
+class MovieDetailActivity() : AppCompatActivity() {
+    private val getMoviesUseCaseFav: GetFavMovieUseCase by inject()
     lateinit var binding: ActivityMovieDetailBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

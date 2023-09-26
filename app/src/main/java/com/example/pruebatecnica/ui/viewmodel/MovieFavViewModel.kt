@@ -8,10 +8,9 @@ import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.domain.GetFavMovieUseCase
 import kotlinx.coroutines.launch
 
-class MovieFavViewModel : ViewModel() {
-
+class MovieFavViewModel constructor(private var getMoviesUseCaseFav: GetFavMovieUseCase) :
+    ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
-    var getMoviesUseCaseFav = GetFavMovieUseCase()
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
         get() = _movieList

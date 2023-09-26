@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.pruebatecnica.data.database.entities.MovieEntity
 
+
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM movie_table")
@@ -18,3 +19,4 @@ interface MovieDao {
     @Update
     suspend fun updateMovie(itemEntity: MovieEntity): Int
 }
+

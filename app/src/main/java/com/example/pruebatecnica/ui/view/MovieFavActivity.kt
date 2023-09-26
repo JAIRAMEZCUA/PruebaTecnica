@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -15,12 +14,15 @@ import com.example.pruebatecnica.data.model.Movie
 import com.example.pruebatecnica.databinding.ActivityMovieFavBinding
 import com.example.pruebatecnica.ui.view.adapters.MovieAdapterFav
 import com.example.pruebatecnica.ui.viewmodel.MovieFavViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
-class MovieFavActivity : AppCompatActivity() {
-    private val movieViewModel: MovieFavViewModel by viewModels()
+class MovieFavActivity() : AppCompatActivity() {
+
+    private val adapter: MovieAdapterFav by inject()
+    private val movieViewModel: MovieFavViewModel by viewModel()
     private val movies: ArrayList<Movie> = arrayListOf()
-    private val adapter = MovieAdapterFav()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
