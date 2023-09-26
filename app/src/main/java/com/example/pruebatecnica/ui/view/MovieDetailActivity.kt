@@ -47,7 +47,6 @@ class MovieDetailActivity() : AppCompatActivity() {
         binding.textViewRating.text = getString(R.string.movie_rating_format, movie.voteAverage)
         binding.imgFav.setOnClickListener {
             showAlert(movie)
-
         }
     }
 

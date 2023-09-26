@@ -12,10 +12,12 @@ import com.example.pruebatecnica.domain.GetMoviesUseCase
 import com.example.pruebatecnica.ui.view.MovieDetailActivity
 import com.example.pruebatecnica.ui.view.MovieFavActivity
 import com.example.pruebatecnica.ui.view.MoviesMenuActivity
+import com.example.pruebatecnica.ui.view.adapters.MovieAdapter
 import com.example.pruebatecnica.ui.view.adapters.MovieAdapterFav
 import com.example.pruebatecnica.ui.viewmodel.MovieFavViewModel
 import com.example.pruebatecnica.ui.viewmodel.MovieMenuViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -43,6 +45,7 @@ var viewModelModule = module {
     factory { MovieFavActivity() }
     factory { MoviesMenuActivity() }
     single { MovieAdapterFav() }
+    single(named("MovieAdapter")) { MovieAdapter() }
 
     //ROOM
     single { provideAppDatabase(get()) }
