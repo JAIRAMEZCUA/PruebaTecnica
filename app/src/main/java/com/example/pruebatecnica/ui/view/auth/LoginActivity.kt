@@ -3,19 +3,14 @@ package com.example.pruebatecnica.ui.view.auth
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.ActivityLoginBinding
 import com.example.pruebatecnica.ui.view.MoviesMenuActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
-    SignUpFragment.SignUpFragmentActions {
-
-
-    private val viewModel: AuthViewModel by viewModels()
+class LoginActivity : AppCompatActivity() {
+    private val viewModel by viewModel<AuthViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,22 +42,5 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentActions,
             .setPositiveButton(android.R.string.ok) { _, _ -> /** Dismiss dialog **/ }
             .create()
             .show()
-    }
-
-    override fun onSignUpFieldsValidated(
-        email: String,
-        password: String,
-        passwordConfirmation: String
-    ) {
-        viewModel.signUp(email, password)
-    }
-
-    override fun onRegisterButtonClick() {
-        findNavController(R.id.nav_host_fragment)
-            .navigate(R.id.action_loginFragment_to_signUpFragment)
-    }
-
-    override fun onLoginFieldsValidated(email: String, password: String) {
-        viewModel.login(email, password)
     }
 }

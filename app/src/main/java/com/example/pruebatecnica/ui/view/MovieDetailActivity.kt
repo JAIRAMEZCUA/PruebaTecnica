@@ -18,7 +18,7 @@ import org.koin.android.ext.android.inject
 
 class MovieDetailActivity() : AppCompatActivity() {
     private val getMoviesUseCaseFav: GetFavMovieUseCase by inject()
-    lateinit var binding: ActivityMovieDetailBinding;
+    lateinit var binding: ActivityMovieDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
@@ -35,7 +35,7 @@ class MovieDetailActivity() : AppCompatActivity() {
         }
 
         binding.back.setOnClickListener {
-            onBackPressed()
+            this.onBackPressed()
         }
         /*
                 La pantalla de detalles deberá mostrar el póster, título, resumen de la película, y la

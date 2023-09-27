@@ -1,32 +1,20 @@
 package com.example.pruebatecnica.ui.view.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.FragmentLoginBinding
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class LoginFragment : Fragment() {
-
-    interface LoginFragmentActions {
-        fun onRegisterButtonClick()
-        fun onLoginFieldsValidated(email: String, password: String)
-    }
-
-    private lateinit var loginFragmentActions: LoginFragmentActions
+    private val loginFragmentActions: LoginFragmentActions by inject()
     private lateinit var binding: FragmentLoginBinding
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        loginFragmentActions = try {
-            context as LoginFragmentActions
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement LoginFragmentActions")
-        }
-    }
+    private val navController: NavController by inject { parametersOf(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +22,7 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater)
         binding.loginRegisterButton.setOnClickListener {
-            loginFragmentActions.onRegisterButtonClick()
+            loginFragmentActions.onRegisterButtonClick(navController)
         }
         binding.loginButton.setOnClickListener {
             validateFields()
@@ -58,8 +46,11 @@ class LoginFragment : Fragment() {
             binding.passwordInput.error = getString(R.string.password_must_not_be_empty)
             return
         }
-
         loginFragmentActions.onLoginFieldsValidated(email, password)
     }
+}
 
+interface LoginFragmentActions {
+    fun onRegisterButtonClick(navController: NavController)
+    fun onLoginFieldsValidated(email: String, password: String)
 }

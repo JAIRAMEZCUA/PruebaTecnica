@@ -1,6 +1,5 @@
 package com.example.pruebatecnica.ui.view.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,27 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.FragmentSignUpBinding
+import org.koin.android.ext.android.inject
 
 class SignUpFragment : Fragment() {
 
-    interface SignUpFragmentActions {
-        fun onSignUpFieldsValidated(
-            email: String, password: String,
-            passwordConfirmation: String
-        )
-    }
-
-    private lateinit var signUpFragmentActions: SignUpFragmentActions
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        signUpFragmentActions = try {
-            context as SignUpFragmentActions
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement LoginFragmentActions")
-        }
-    }
-
+    private val signUpFragmentActions: SignUpFragmentActions by inject()
     private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
@@ -77,4 +60,11 @@ class SignUpFragment : Fragment() {
 
         signUpFragmentActions.onSignUpFieldsValidated(email, password, passwordConfirmation)
     }
+}
+
+interface SignUpFragmentActions {
+    fun onSignUpFieldsValidated(
+        email: String, password: String,
+        passwordConfirmation: String
+    )
 }
