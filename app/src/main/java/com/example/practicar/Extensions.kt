@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
+//Permiten extender clases finales y de terceros. FUNCIONES DE EXTENSION
+
 val Context.dataStore by preferencesDataStore(name = "USER_PREFERENCES_NAME")
 fun String.carita(): String {
     return "$this :)"

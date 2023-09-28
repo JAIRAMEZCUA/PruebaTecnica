@@ -16,9 +16,11 @@ class OuterClass {
     }
 
     class classAnidada {
+
         fun printOuterProperty() {
 //            No se puede acceder
 //            println("Accessing outer property: $outerProperty")
+            println("NOT Accessing outer property")
         }
     }
 }
@@ -28,4 +30,6 @@ fun main() {
     val inner = outer.InnerClass() // Creating an instance of the inner class
 
     inner.printOuterProperty() // Accessing the outer property through the inner class
+
+    OuterClass.classAnidada().printOuterProperty()
 }
